@@ -15,6 +15,7 @@ Para a injestão de dados, foi feito por um arquivo parquet para exemplicação 
 *https://app.dadosfera.ai/pt-BR/catalog/data-assets/ee578ba6-867c-49f3-957a-afea86a22623*
 
 **Item 3**
+
 Para esse item, não obtive uma resposta. 
 No enunciado, está descrito:
 "Para entender como usar um LLM como o GPT, acesse este notebook de exemplo ou então pesquise no Playground da Open AI (referenciado abaixo)"
