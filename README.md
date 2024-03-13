@@ -31,3 +31,10 @@ group by CATEGORY
 ![image](https://github.com/mathbatista2501/MATHEUS_MOREIRA_DDF_032024/assets/63022738/58081863-f828-4fcb-8ab7-6921b35db9a9)
 
 **Item 5**
+Fiz a criação da conexão com Streamlit, e crei o app como foi informado na documentação
+![image](https://github.com/mathbatista2501/MATHEUS_MOREIRA_DDF_032024/assets/63022738/024b2fbc-d44f-4b15-b526-16f561459ee4)
+
+Tentei criar o .ipynb referente a "Visualizing Word Vectors with t-SNE"
+![image](https://github.com/mathbatista2501/MATHEUS_MOREIRA_DDF_032024/assets/63022738/c59d3611-9004-48d4-90c4-779de3792b61)
+
+*https://app-intelligence-treinamentos.dadosfera.ai/pipeline?project_uuid=50802daa-9754-401a-94ac-4efc6de9464a&pipeline_uuid=d55add85-dabb-441f-8a86-b874b8b04f2b*
