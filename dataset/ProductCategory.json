@@ -1,0 +1,17 @@
+{
+	"name": "ProductCategory",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "SalesLT",
+			"table": "ProductCategory"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

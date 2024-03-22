@@ -1,0 +1,13 @@
+{
+	"name": "cxGoogleSheets",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "HttpServer",
+		"typeProperties": {
+			"url": "https://docs.google.com/spreadsheets/d/1V9W6WwvTRTRyNCcEcthZTtCOp8qen7dS/edit?usp=sharing&ouid=103844633911891908911&rtpof=true&sd=true",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	}
+}

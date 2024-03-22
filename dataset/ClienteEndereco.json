@@ -1,0 +1,20 @@
+{
+	"name": "ClienteEndereco",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Destino"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "ClienteEndereco"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

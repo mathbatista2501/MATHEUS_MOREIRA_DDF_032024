@@ -1,0 +1,9 @@
+{
+	"name": "pip-AdventureWorks",
+	"location": "brazilsouth",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "d249842b-077b-4921-b720-964f677e01b5",
+		"tenantId": "e757000f-183f-4d95-9f55-ec00e99a4e32"
+	}
+}
