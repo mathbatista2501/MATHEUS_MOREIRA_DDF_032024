@@ -1,0 +1,18 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "pip-AdventureWorks"
+		},
+		"AzureSqlDatabase1_connectionString": {
+			"value": ""
+		},
+		"GoogleSheets1_apiToken": {
+			"value": ""
+		},
+		"cxGoogleSheets_properties_typeProperties_url": {
+			"value": "https://docs.google.com/spreadsheets/d/1V9W6WwvTRTRyNCcEcthZTtCOp8qen7dS/edit?usp=sharing&ouid=103844633911891908911&rtpof=true&sd=true"
+		}
+	}
+}
