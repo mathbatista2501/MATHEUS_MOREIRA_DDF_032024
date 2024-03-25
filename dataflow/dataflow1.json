@@ -5,145 +5,68 @@
 		"typeProperties": {
 			"sources": [
 				{
-					"dataset": {
-						"referenceName": "Address",
-						"type": "DatasetReference"
-					},
 					"name": "Address"
 				},
 				{
-					"dataset": {
-						"referenceName": "Customer",
-						"type": "DatasetReference"
-					},
 					"name": "Customer"
 				},
 				{
-					"dataset": {
-						"referenceName": "CustomerAddress",
-						"type": "DatasetReference"
-					},
 					"name": "CustomerAddress"
 				},
 				{
-					"dataset": {
-						"referenceName": "Product",
-						"type": "DatasetReference"
-					},
 					"name": "Product"
 				},
 				{
-					"dataset": {
-						"referenceName": "ProductCategory",
-						"type": "DatasetReference"
-					},
 					"name": "ProductCategory"
 				},
 				{
-					"dataset": {
-						"referenceName": "ProductDescription",
-						"type": "DatasetReference"
-					},
 					"name": "ProductDescription"
 				},
 				{
-					"dataset": {
-						"referenceName": "ProductModel",
-						"type": "DatasetReference"
-					},
 					"name": "ProductModel"
 				},
 				{
-					"dataset": {
-						"referenceName": "ProductModelProductDescription",
-						"type": "DatasetReference"
-					},
 					"name": "ProductModelPD"
 				},
 				{
-					"dataset": {
-						"referenceName": "SalesOrderDetail",
-						"type": "DatasetReference"
-					},
 					"name": "SalesOrderDetail"
 				},
 				{
-					"dataset": {
-						"referenceName": "SalesOrderHeader",
-						"type": "DatasetReference"
-					},
 					"name": "SalesOrderHeader"
+				},
+				{
+					"name": "source1"
 				}
 			],
 			"sinks": [
 				{
-					"dataset": {
-						"referenceName": "Endereco",
-						"type": "DatasetReference"
-					},
 					"name": "sink1"
 				},
 				{
-					"dataset": {
-						"referenceName": "Cliente",
-						"type": "DatasetReference"
-					},
 					"name": "sink2"
 				},
 				{
-					"dataset": {
-						"referenceName": "ClienteEndereco",
-						"type": "DatasetReference"
-					},
 					"name": "sink3"
 				},
 				{
-					"dataset": {
-						"referenceName": "Produto",
-						"type": "DatasetReference"
-					},
 					"name": "sink4"
 				},
 				{
-					"dataset": {
-						"referenceName": "ProdutoCategoria",
-						"type": "DatasetReference"
-					},
 					"name": "sink5"
 				},
 				{
-					"dataset": {
-						"referenceName": "ProdutoDescricao",
-						"type": "DatasetReference"
-					},
 					"name": "sink6"
 				},
 				{
-					"dataset": {
-						"referenceName": "ProdutoModelo",
-						"type": "DatasetReference"
-					},
 					"name": "sink7"
 				},
 				{
-					"dataset": {
-						"referenceName": "ProdutoModeloDescription",
-						"type": "DatasetReference"
-					},
 					"name": "sink8"
 				},
 				{
-					"dataset": {
-						"referenceName": "DetalhesVenda",
-						"type": "DatasetReference"
-					},
 					"name": "sink9"
 				},
 				{
-					"dataset": {
-						"referenceName": "CabecarioVenda",
-						"type": "DatasetReference"
-					},
 					"name": "sink10"
 				}
 			],
@@ -201,21 +124,8 @@
 				}
 			],
 			"scriptLines": [
-				"source(output(",
-				"          AddressID as integer,",
-				"          AddressLine1 as string,",
-				"          AddressLine2 as string,",
-				"          City as string,",
-				"          StateProvince as string,",
-				"          CountryRegion as string,",
-				"          PostalCode as string,",
-				"          rowguid as string,",
-				"          ModifiedDate as timestamp",
-				"     ),",
-				"     allowSchemaDrift: true,",
-				"     validateSchema: false,",
-				"     isolationLevel: 'READ_UNCOMMITTED',",
-				"     format: 'table') ~> Address",
+				"source(allowSchemaDrift: true,",
+				"     validateSchema: false) ~> Address",
 				"source(output(",
 				"          CustomerID as integer,",
 				"          NameStyle as boolean,",
@@ -234,9 +144,7 @@
 				"          ModifiedDate as timestamp",
 				"     ),",
 				"     allowSchemaDrift: true,",
-				"     validateSchema: false,",
-				"     isolationLevel: 'READ_UNCOMMITTED',",
-				"     format: 'table') ~> Customer",
+				"     validateSchema: false) ~> Customer",
 				"source(output(",
 				"          CustomerID as integer,",
 				"          AddressID as integer,",
@@ -245,9 +153,7 @@
 				"          ModifiedDate as timestamp",
 				"     ),",
 				"     allowSchemaDrift: true,",
-				"     validateSchema: false,",
-				"     isolationLevel: 'READ_UNCOMMITTED',",
-				"     format: 'table') ~> CustomerAddress",
+				"     validateSchema: false) ~> CustomerAddress",
 				"source(output(",
 				"          ProductID as integer,",
 				"          Name as string,",
@@ -268,9 +174,7 @@
 				"          ModifiedDate as timestamp",
 				"     ),",
 				"     allowSchemaDrift: true,",
-				"     validateSchema: false,",
-				"     isolationLevel: 'READ_UNCOMMITTED',",
-				"     format: 'table') ~> Product",
+				"     validateSchema: false) ~> Product",
 				"source(output(",
 				"          ProductCategoryID as integer,",
 				"          ParentProductCategoryID as integer,",
@@ -279,9 +183,7 @@
 				"          ModifiedDate as timestamp",
 				"     ),",
 				"     allowSchemaDrift: true,",
-				"     validateSchema: false,",
-				"     isolationLevel: 'READ_UNCOMMITTED',",
-				"     format: 'table') ~> ProductCategory",
+				"     validateSchema: false) ~> ProductCategory",
 				"source(output(",
 				"          ProductDescriptionID as integer,",
 				"          Description as string,",
@@ -289,9 +191,7 @@
 				"          ModifiedDate as timestamp",
 				"     ),",
 				"     allowSchemaDrift: true,",
-				"     validateSchema: false,",
-				"     isolationLevel: 'READ_UNCOMMITTED',",
-				"     format: 'table') ~> ProductDescription",
+				"     validateSchema: false) ~> ProductDescription",
 				"source(output(",
 				"          ProductModelID as integer,",
 				"          Name as string,",
@@ -300,9 +200,7 @@
 				"          ModifiedDate as timestamp",
 				"     ),",
 				"     allowSchemaDrift: true,",
-				"     validateSchema: false,",
-				"     isolationLevel: 'READ_UNCOMMITTED',",
-				"     format: 'table') ~> ProductModel",
+				"     validateSchema: false) ~> ProductModel",
 				"source(output(",
 				"          ProductModelID as integer,",
 				"          ProductDescriptionID as integer,",
@@ -311,9 +209,7 @@
 				"          ModifiedDate as timestamp",
 				"     ),",
 				"     allowSchemaDrift: true,",
-				"     validateSchema: false,",
-				"     isolationLevel: 'READ_UNCOMMITTED',",
-				"     format: 'table') ~> ProductModelPD",
+				"     validateSchema: false) ~> ProductModelPD",
 				"source(output(",
 				"          SalesOrderID as integer,",
 				"          SalesOrderDetailID as integer,",
@@ -326,9 +222,7 @@
 				"          ModifiedDate as timestamp",
 				"     ),",
 				"     allowSchemaDrift: true,",
-				"     validateSchema: false,",
-				"     isolationLevel: 'READ_UNCOMMITTED',",
-				"     format: 'table') ~> SalesOrderDetail",
+				"     validateSchema: false) ~> SalesOrderDetail",
 				"source(output(",
 				"          SalesOrderID as integer,",
 				"          RevisionNumber as integer,",
@@ -354,9 +248,9 @@
 				"          ModifiedDate as timestamp",
 				"     ),",
 				"     allowSchemaDrift: true,",
-				"     validateSchema: false,",
-				"     isolationLevel: 'READ_UNCOMMITTED',",
-				"     format: 'table') ~> SalesOrderHeader",
+				"     validateSchema: false) ~> SalesOrderHeader",
+				"source(allowSchemaDrift: true,",
+				"     validateSchema: false) ~> source1",
 				"Address select(mapColumn(",
 				"          AddressID,",
 				"          AddressLine1,",
@@ -438,115 +332,55 @@
 				"SalesOrderHeader derive(dta_Created = fromUTC(currentTimestamp(),\"America/Sao_Paulo\")) ~> derivedColumn11",
 				"derivedColumn1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     deletable:false,",
-				"     insertable:true,",
-				"     updateable:false,",
-				"     upsertable:false,",
-				"     recreate:true,",
-				"     format: 'table',",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
 				"     saveOrder: 1,",
-				"     errorHandlingOption: 'stopOnFirstError') ~> sink1",
+				"     format: 'table') ~> sink1",
 				"derivedColumn2 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     deletable:false,",
-				"     insertable:true,",
-				"     updateable:false,",
-				"     upsertable:false,",
-				"     recreate:true,",
-				"     format: 'table',",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
-				"     errorHandlingOption: 'stopOnFirstError') ~> sink2",
+				"     format: 'table') ~> sink2",
 				"derivedColumn4 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     deletable:false,",
-				"     insertable:true,",
-				"     updateable:false,",
-				"     upsertable:false,",
-				"     recreate:true,",
-				"     format: 'table',",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
-				"     errorHandlingOption: 'stopOnFirstError') ~> sink3",
+				"     format: 'table') ~> sink3",
 				"derivedColumn5 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     deletable:false,",
-				"     insertable:true,",
-				"     updateable:false,",
-				"     upsertable:false,",
-				"     recreate:true,",
-				"     format: 'table',",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
-				"     errorHandlingOption: 'stopOnFirstError') ~> sink4",
+				"     format: 'table') ~> sink4",
 				"derivedColumn6 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     deletable:false,",
-				"     insertable:true,",
-				"     updateable:false,",
-				"     upsertable:false,",
-				"     recreate:true,",
-				"     format: 'table',",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
-				"     errorHandlingOption: 'stopOnFirstError') ~> sink5",
+				"     format: 'table') ~> sink5",
 				"derivedColumn7 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     deletable:false,",
-				"     insertable:true,",
-				"     updateable:false,",
-				"     upsertable:false,",
-				"     recreate:true,",
-				"     format: 'table',",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
-				"     errorHandlingOption: 'stopOnFirstError') ~> sink6",
+				"     format: 'table') ~> sink6",
 				"derivedColumn8 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     deletable:false,",
-				"     insertable:true,",
-				"     updateable:false,",
-				"     upsertable:false,",
-				"     recreate:true,",
-				"     format: 'table',",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
-				"     errorHandlingOption: 'stopOnFirstError') ~> sink7",
+				"     format: 'table') ~> sink7",
 				"derivedColumn9 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     deletable:false,",
-				"     insertable:true,",
-				"     updateable:false,",
-				"     upsertable:false,",
-				"     recreate:true,",
-				"     format: 'table',",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
-				"     errorHandlingOption: 'stopOnFirstError') ~> sink8",
+				"     format: 'table') ~> sink8",
 				"derivedColumn10 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     deletable:false,",
-				"     insertable:true,",
-				"     updateable:false,",
-				"     upsertable:false,",
-				"     recreate:true,",
-				"     format: 'table',",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
-				"     errorHandlingOption: 'stopOnFirstError') ~> sink9",
+				"     format: 'table') ~> sink9",
 				"derivedColumn11 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     deletable:false,",
-				"     insertable:true,",
-				"     updateable:false,",
-				"     upsertable:false,",
-				"     recreate:true,",
-				"     format: 'table',",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
-				"     errorHandlingOption: 'stopOnFirstError') ~> sink10"
+				"     format: 'table') ~> sink10"
 			]
 		}
 	}
