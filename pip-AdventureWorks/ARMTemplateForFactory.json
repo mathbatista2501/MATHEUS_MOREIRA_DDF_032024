@@ -56,6 +56,8 @@
 									"ProductDescription": {},
 									"ProductModel": {},
 									"ProductModelPD": {},
+									"SalesOrderDetail": {},
+									"SalesOrderHeader": {},
 									"sink1": {},
 									"sink2": {},
 									"sink3": {},
@@ -63,7 +65,9 @@
 									"sink5": {},
 									"sink6": {},
 									"sink7": {},
-									"sink8": {}
+									"sink8": {},
+									"sink9": {},
+									"sink10": {}
 								}
 							},
 							"staging": {},
@@ -124,6 +128,30 @@
 				"typeProperties": {
 					"schema": "dbo",
 					"table": "Teste"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/CabecarioVenda')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Destino"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "CabecarioVenda"
 				}
 			},
 			"dependsOn": [
@@ -214,6 +242,30 @@
 				"typeProperties": {
 					"schema": "SalesLT",
 					"table": "CustomerAddress"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DetalhesVenda')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Destino"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "DetalhesVenda"
 				}
 			},
 			"dependsOn": [
@@ -470,6 +522,48 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/SalesOrderDetail')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "SalesLT",
+					"table": "SalesOrderDetail"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SalesOrderHeader')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "SalesLT",
+					"table": "SalesOrderHeader"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/AzureSqlDatabase1')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -576,6 +670,20 @@
 								"type": "DatasetReference"
 							},
 							"name": "ProductModelPD"
+						},
+						{
+							"dataset": {
+								"referenceName": "SalesOrderDetail",
+								"type": "DatasetReference"
+							},
+							"name": "SalesOrderDetail"
+						},
+						{
+							"dataset": {
+								"referenceName": "SalesOrderHeader",
+								"type": "DatasetReference"
+							},
+							"name": "SalesOrderHeader"
 						}
 					],
 					"sinks": [
@@ -634,6 +742,20 @@
 								"type": "DatasetReference"
 							},
 							"name": "sink8"
+						},
+						{
+							"dataset": {
+								"referenceName": "DetalhesVenda",
+								"type": "DatasetReference"
+							},
+							"name": "sink9"
+						},
+						{
+							"dataset": {
+								"referenceName": "CabecarioVenda",
+								"type": "DatasetReference"
+							},
+							"name": "sink10"
 						}
 					],
 					"transformations": [
@@ -681,6 +803,12 @@
 						},
 						{
 							"name": "derivedColumn9"
+						},
+						{
+							"name": "derivedColumn10"
+						},
+						{
+							"name": "derivedColumn11"
 						}
 					],
 					"scriptLines": [
@@ -797,6 +925,49 @@
 						"     validateSchema: false,",
 						"     isolationLevel: 'READ_UNCOMMITTED',",
 						"     format: 'table') ~> ProductModelPD",
+						"source(output(",
+						"          SalesOrderID as integer,",
+						"          SalesOrderDetailID as integer,",
+						"          OrderQty as short,",
+						"          ProductID as integer,",
+						"          UnitPrice as decimal(19,4),",
+						"          UnitPriceDiscount as decimal(19,4),",
+						"          LineTotal as decimal(38,6),",
+						"          rowguid as string,",
+						"          ModifiedDate as timestamp",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     isolationLevel: 'READ_UNCOMMITTED',",
+						"     format: 'table') ~> SalesOrderDetail",
+						"source(output(",
+						"          SalesOrderID as integer,",
+						"          RevisionNumber as integer,",
+						"          OrderDate as timestamp,",
+						"          DueDate as timestamp,",
+						"          ShipDate as timestamp,",
+						"          Status as integer,",
+						"          OnlineOrderFlag as boolean,",
+						"          SalesOrderNumber as string,",
+						"          PurchaseOrderNumber as string,",
+						"          AccountNumber as string,",
+						"          CustomerID as integer,",
+						"          ShipToAddressID as integer,",
+						"          BillToAddressID as integer,",
+						"          ShipMethod as string,",
+						"          CreditCardApprovalCode as string,",
+						"          SubTotal as decimal(19,4),",
+						"          TaxAmt as decimal(19,4),",
+						"          Freight as decimal(19,4),",
+						"          TotalDue as decimal(19,4),",
+						"          Comment as string,",
+						"          rowguid as string,",
+						"          ModifiedDate as timestamp",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     isolationLevel: 'READ_UNCOMMITTED',",
+						"     format: 'table') ~> SalesOrderHeader",
 						"Address select(mapColumn(",
 						"          AddressID,",
 						"          AddressLine1,",
@@ -874,12 +1045,15 @@
 						"     skipDuplicateMapOutputs: true) ~> select6",
 						"select6 derive(dta_Created = fromUTC(currentTimestamp(),\"America/Sao_Paulo\")) ~> derivedColumn8",
 						"ProductModelPD derive(dta_Created = fromUTC(currentTimestamp(),\"America/Sao_Paulo\")) ~> derivedColumn9",
+						"SalesOrderDetail derive(dta_Created = fromUTC(currentTimestamp(),\"America/Sao_Paulo\")) ~> derivedColumn10",
+						"SalesOrderHeader derive(dta_Created = fromUTC(currentTimestamp(),\"America/Sao_Paulo\")) ~> derivedColumn11",
 						"derivedColumn1 sink(allowSchemaDrift: true,",
 						"     validateSchema: false,",
 						"     deletable:false,",
 						"     insertable:true,",
 						"     updateable:false,",
 						"     upsertable:false,",
+						"     recreate:true,",
 						"     format: 'table',",
 						"     skipDuplicateMapInputs: true,",
 						"     skipDuplicateMapOutputs: true,",
@@ -891,6 +1065,7 @@
 						"     insertable:true,",
 						"     updateable:false,",
 						"     upsertable:false,",
+						"     recreate:true,",
 						"     format: 'table',",
 						"     skipDuplicateMapInputs: true,",
 						"     skipDuplicateMapOutputs: true,",
@@ -901,6 +1076,7 @@
 						"     insertable:true,",
 						"     updateable:false,",
 						"     upsertable:false,",
+						"     recreate:true,",
 						"     format: 'table',",
 						"     skipDuplicateMapInputs: true,",
 						"     skipDuplicateMapOutputs: true,",
@@ -911,6 +1087,7 @@
 						"     insertable:true,",
 						"     updateable:false,",
 						"     upsertable:false,",
+						"     recreate:true,",
 						"     format: 'table',",
 						"     skipDuplicateMapInputs: true,",
 						"     skipDuplicateMapOutputs: true,",
@@ -921,6 +1098,7 @@
 						"     insertable:true,",
 						"     updateable:false,",
 						"     upsertable:false,",
+						"     recreate:true,",
 						"     format: 'table',",
 						"     skipDuplicateMapInputs: true,",
 						"     skipDuplicateMapOutputs: true,",
@@ -931,6 +1109,7 @@
 						"     insertable:true,",
 						"     updateable:false,",
 						"     upsertable:false,",
+						"     recreate:true,",
 						"     format: 'table',",
 						"     skipDuplicateMapInputs: true,",
 						"     skipDuplicateMapOutputs: true,",
@@ -941,6 +1120,7 @@
 						"     insertable:true,",
 						"     updateable:false,",
 						"     upsertable:false,",
+						"     recreate:true,",
 						"     format: 'table',",
 						"     skipDuplicateMapInputs: true,",
 						"     skipDuplicateMapOutputs: true,",
@@ -951,10 +1131,33 @@
 						"     insertable:true,",
 						"     updateable:false,",
 						"     upsertable:false,",
+						"     recreate:true,",
 						"     format: 'table',",
 						"     skipDuplicateMapInputs: true,",
 						"     skipDuplicateMapOutputs: true,",
-						"     errorHandlingOption: 'stopOnFirstError') ~> sink8"
+						"     errorHandlingOption: 'stopOnFirstError') ~> sink8",
+						"derivedColumn10 sink(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     deletable:false,",
+						"     insertable:true,",
+						"     updateable:false,",
+						"     upsertable:false,",
+						"     recreate:true,",
+						"     format: 'table',",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true,",
+						"     errorHandlingOption: 'stopOnFirstError') ~> sink9",
+						"derivedColumn11 sink(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     deletable:false,",
+						"     insertable:true,",
+						"     updateable:false,",
+						"     upsertable:false,",
+						"     recreate:true,",
+						"     format: 'table',",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true,",
+						"     errorHandlingOption: 'stopOnFirstError') ~> sink10"
 					]
 				}
 			},
@@ -967,6 +1170,8 @@
 				"[concat(variables('factoryId'), '/datasets/ProductDescription')]",
 				"[concat(variables('factoryId'), '/datasets/ProductModel')]",
 				"[concat(variables('factoryId'), '/datasets/ProductModelProductDescription')]",
+				"[concat(variables('factoryId'), '/datasets/SalesOrderDetail')]",
+				"[concat(variables('factoryId'), '/datasets/SalesOrderHeader')]",
 				"[concat(variables('factoryId'), '/datasets/Endereco')]",
 				"[concat(variables('factoryId'), '/datasets/Cliente')]",
 				"[concat(variables('factoryId'), '/datasets/ClienteEndereco')]",
@@ -974,7 +1179,9 @@
 				"[concat(variables('factoryId'), '/datasets/ProdutoCategoria')]",
 				"[concat(variables('factoryId'), '/datasets/ProdutoDescricao')]",
 				"[concat(variables('factoryId'), '/datasets/ProdutoModelo')]",
-				"[concat(variables('factoryId'), '/datasets/ProdutoModeloDescription')]"
+				"[concat(variables('factoryId'), '/datasets/ProdutoModeloDescription')]",
+				"[concat(variables('factoryId'), '/datasets/DetalhesVenda')]",
+				"[concat(variables('factoryId'), '/datasets/CabecarioVenda')]"
 			]
 		}
 	]
