@@ -59,6 +59,20 @@
 						"type": "DatasetReference"
 					},
 					"name": "ProductModelPD"
+				},
+				{
+					"dataset": {
+						"referenceName": "SalesOrderDetail",
+						"type": "DatasetReference"
+					},
+					"name": "SalesOrderDetail"
+				},
+				{
+					"dataset": {
+						"referenceName": "SalesOrderHeader",
+						"type": "DatasetReference"
+					},
+					"name": "SalesOrderHeader"
 				}
 			],
 			"sinks": [
@@ -117,6 +131,20 @@
 						"type": "DatasetReference"
 					},
 					"name": "sink8"
+				},
+				{
+					"dataset": {
+						"referenceName": "DetalhesVenda",
+						"type": "DatasetReference"
+					},
+					"name": "sink9"
+				},
+				{
+					"dataset": {
+						"referenceName": "CabecarioVenda",
+						"type": "DatasetReference"
+					},
+					"name": "sink10"
 				}
 			],
 			"transformations": [
@@ -164,6 +192,12 @@
 				},
 				{
 					"name": "derivedColumn9"
+				},
+				{
+					"name": "derivedColumn10"
+				},
+				{
+					"name": "derivedColumn11"
 				}
 			],
 			"scriptLines": [
@@ -280,6 +314,49 @@
 				"     validateSchema: false,",
 				"     isolationLevel: 'READ_UNCOMMITTED',",
 				"     format: 'table') ~> ProductModelPD",
+				"source(output(",
+				"          SalesOrderID as integer,",
+				"          SalesOrderDetailID as integer,",
+				"          OrderQty as short,",
+				"          ProductID as integer,",
+				"          UnitPrice as decimal(19,4),",
+				"          UnitPriceDiscount as decimal(19,4),",
+				"          LineTotal as decimal(38,6),",
+				"          rowguid as string,",
+				"          ModifiedDate as timestamp",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> SalesOrderDetail",
+				"source(output(",
+				"          SalesOrderID as integer,",
+				"          RevisionNumber as integer,",
+				"          OrderDate as timestamp,",
+				"          DueDate as timestamp,",
+				"          ShipDate as timestamp,",
+				"          Status as integer,",
+				"          OnlineOrderFlag as boolean,",
+				"          SalesOrderNumber as string,",
+				"          PurchaseOrderNumber as string,",
+				"          AccountNumber as string,",
+				"          CustomerID as integer,",
+				"          ShipToAddressID as integer,",
+				"          BillToAddressID as integer,",
+				"          ShipMethod as string,",
+				"          CreditCardApprovalCode as string,",
+				"          SubTotal as decimal(19,4),",
+				"          TaxAmt as decimal(19,4),",
+				"          Freight as decimal(19,4),",
+				"          TotalDue as decimal(19,4),",
+				"          Comment as string,",
+				"          rowguid as string,",
+				"          ModifiedDate as timestamp",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> SalesOrderHeader",
 				"Address select(mapColumn(",
 				"          AddressID,",
 				"          AddressLine1,",
@@ -357,6 +434,8 @@
 				"     skipDuplicateMapOutputs: true) ~> select6",
 				"select6 derive(dta_Created = fromUTC(currentTimestamp(),\"America/Sao_Paulo\")) ~> derivedColumn8",
 				"ProductModelPD derive(dta_Created = fromUTC(currentTimestamp(),\"America/Sao_Paulo\")) ~> derivedColumn9",
+				"SalesOrderDetail derive(dta_Created = fromUTC(currentTimestamp(),\"America/Sao_Paulo\")) ~> derivedColumn10",
+				"SalesOrderHeader derive(dta_Created = fromUTC(currentTimestamp(),\"America/Sao_Paulo\")) ~> derivedColumn11",
 				"derivedColumn1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     deletable:false,",
@@ -445,7 +524,29 @@
 				"     format: 'table',",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
-				"     errorHandlingOption: 'stopOnFirstError') ~> sink8"
+				"     errorHandlingOption: 'stopOnFirstError') ~> sink8",
+				"derivedColumn10 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     recreate:true,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> sink9",
+				"derivedColumn11 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     recreate:true,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> sink10"
 			]
 		}
 	}
