@@ -44,3 +44,13 @@ Segue algumas analises:
   -Top 5 produtos que geraram mais renda ($)
   
   ![image](https://github.com/mathbatista2501/MATHEUS_MOREIRA_DDF_032024/assets/63022738/2be0b51d-fdf0-4312-9903-daceadb8e900)
+
+*Vendas*
+
+- Acompanhamento de quantidade de pedidos por mês
+- Valor vendido por mês
+- Quantidade e valor vendido
+
+![image](https://github.com/mathbatista2501/MATHEUS_MOREIRA_DDF_032024/assets/63022738/a5197ed4-f38f-49c2-83ca-d4de197a7c7c)
+
+  
