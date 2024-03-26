@@ -1,0 +1,16 @@
+{
+	"name": "fato_SalesOrderDetail",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "fato_SalesOrderDetail"
+		}
+	}
+}
