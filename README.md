@@ -1,46 +1,46 @@
 # MATHEUS_MOREIRA_DDF_032024
 
-**Item 1**
+**Fonte de Dados**
 
-![image](https://github.com/mathbatista2501/MATHEUS_MOREIRA_DDF_032024/assets/63022738/6beed4a1-9e86-483d-a34d-501b4ec556e3)
-*https://www.youtube.com/watch?v=Rkps2kMBWKE*
+Banco de dados Adventure Works, contendo 71 tabela.
 
-**Item 2**
+**ETL**
+Todo o processo foi criado utilizando ferramentas da Azure.
 
-Foi criado diversos teste de pipeline para fazer a extração do dados via api, porem todos deram erro de execução. Por não ter a permissão de editar, foram criados novos pipelines.
-![image](https://github.com/mathbatista2501/MATHEUS_MOREIRA_DDF_032024/assets/63022738/d33de555-d4a3-4f80-b072-5812088b87e2)
-*https://app.dadosfera.ai/pt-BR/collect/pipelines/545bcd9a-4576-43ce-964e-4b1154f46ad0*
+O processo está concentrado no Data Factory. Nele fiz a criação do pipeline para criação das minhas tabelas
 
-Para a injestão de dados, foi feito por um arquivo parquet para exemplicação dos dados
-![image](https://github.com/mathbatista2501/MATHEUS_MOREIRA_DDF_032024/assets/63022738/3d63cf67-90ac-45de-b7ba-ef5ddd451bf3)
-*https://app.dadosfera.ai/pt-BR/collect/import-files/3e2ab327-7543-49fa-9d81-2970f416a991*
+![image](https://github.com/mathbatista2501/MATHEUS_MOREIRA_DDF_032024/assets/63022738/d83f0be2-6033-4225-a9b1-11fdf98bc08d)
 
-![image](https://github.com/mathbatista2501/MATHEUS_MOREIRA_DDF_032024/assets/63022738/f1bf6500-9f76-40ed-b3cb-f7f86ec74696)
-*https://app.dadosfera.ai/pt-BR/catalog/data-assets/ee578ba6-867c-49f3-957a-afea86a22623*
+Dentro do meu data flow é o momento que eu faço a criação das minhas dimensões. 
+Utilizo as tabelas originais como origem, faço algumas transformações necessarias e ai faço a criação de novas tabelas que são utilizadas como dimensão
 
-**Item 3**
+![image](https://github.com/mathbatista2501/MATHEUS_MOREIRA_DDF_032024/assets/63022738/83cefe19-c52a-4568-a41f-69bce02433ec)
 
-Para esse item, não obtive uma resposta. 
-No enunciado, está descrito:
-"Para entender como usar um LLM como o GPT, acesse este notebook de exemplo ou então pesquise no Playground da Open AI (referenciado abaixo)"
-Não estava disponivel o link para verificar o notebook de exemplo e a utilização do Playground da Open AI é pago.
+No banco de dados salvo elas utilizando o prefixo de "Dim"
 
-**Item 4**
+![image](https://github.com/mathbatista2501/MATHEUS_MOREIRA_DDF_032024/assets/63022738/697091cd-e04a-4e60-8bef-458890640168)
 
-Como não foi possivel fazer o item anterior, utilizei a tabela TB__1DM8DH__PRODUCT_SEARCH_CORPUS_FINAL para fazer as consultas desse item.
+No proximo passo do pipeline, eu faço a criação da minha tabela Fato. Para criação dela, eu utilizo uma query SQL
 
-select CATEGORY,
-count(distinct DOCID)
-from TB__1DM8DH__PRODUCT_SEARCH_CORPUS_FINAL,
-group by CATEGORY
-![image](https://github.com/mathbatista2501/MATHEUS_MOREIRA_DDF_032024/assets/63022738/58081863-f828-4fcb-8ab7-6921b35db9a9)
+![image](https://github.com/mathbatista2501/MATHEUS_MOREIRA_DDF_032024/assets/63022738/4fe884f8-7ab9-47aa-88b4-e6e11806fa7f)
 
-**Item 5**
+O proximo passo é fazer a modelagem das tabelas. Fiz a criação do modelo no formato estrela, centralizando minha tabela Fato. 
+Modelagem feita no PowerBI.
 
-Fiz a criação da conexão com Streamlit, e crei o app como foi informado na documentação
-![image](https://github.com/mathbatista2501/MATHEUS_MOREIRA_DDF_032024/assets/63022738/024b2fbc-d44f-4b15-b526-16f561459ee4)
+![image](https://github.com/mathbatista2501/MATHEUS_MOREIRA_DDF_032024/assets/63022738/97385524-5b09-48af-a391-02bd02b52f0a)
 
-Tentei criar o .ipynb referente a "Visualizing Word Vectors with t-SNE"
-![image](https://github.com/mathbatista2501/MATHEUS_MOREIRA_DDF_032024/assets/63022738/c59d3611-9004-48d4-90c4-779de3792b61)
+Com a modelagem dos dados feitas, já é possivel eu fazer a analise dos dados. Foram criadas medidas em DAX para o auxilio das informações
 
-*https://app-intelligence-treinamentos.dadosfera.ai/pipeline?project_uuid=50802daa-9754-401a-94ac-4efc6de9464a&pipeline_uuid=d55add85-dabb-441f-8a86-b874b8b04f2b*
+![image](https://github.com/mathbatista2501/MATHEUS_MOREIRA_DDF_032024/assets/63022738/a0f353bb-ec5f-4891-a41d-00252d26f89b)
+
+Segue algumas analises:
+
+*Produtos*
+
+  -Produtos mais vendido
+  
+  ![image](https://github.com/mathbatista2501/MATHEUS_MOREIRA_DDF_032024/assets/63022738/57a2f5e3-0645-4a53-aac2-15971d979e2a)
+  
+  -Top 5 produtos que geraram mais renda ($)
+  
+  ![image](https://github.com/mathbatista2501/MATHEUS_MOREIRA_DDF_032024/assets/63022738/2be0b51d-fdf0-4312-9903-daceadb8e900)
