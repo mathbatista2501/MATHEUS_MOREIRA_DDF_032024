@@ -134,7 +134,7 @@
 		],
 		"typeProperties": {
 			"schema": "Sales",
-			"table": "SalesPerson"
+			"table": "vSalesPerson"
 		}
 	}
 }
